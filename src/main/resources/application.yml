@@ -1,0 +1,23 @@
+server:
+  port: 8102
+spring:
+  kafka:
+    bootstrap-servers: moped-01.srvs.cloudkafka.com:9094,moped-02.srvs.cloudkafka.com:9094,moped-03.srvs.cloudkafka.com:9094
+    properties:
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: SCRAM-SHA-256
+        jaas:
+          config: org.apache.kafka.common.security.scram.ScramLoginModule required username="8afsz5pc" password="41RlGC9XcNSZNrbTGdfW3rtpsVRQ5DFG";
+  cloud:
+#    function:
+#      definition: updateCurrentAmountAccount
+    stream:
+      bindings:
+        bootcoinerm-out-0:
+          destination: 8afsz5pc-default
+          
+  data:
+    mongodb:
+      uri: mongodb+srv://erick:erickpinglo@cluster0.xdfgh.mongodb.net/bank
